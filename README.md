@@ -43,3 +43,65 @@
               const x;
               // SyntaxError: const declared variable 'x' must have an initializer.
           ```
+          
+3. Awesome JavaScript array methods
+   -  #1 array.forEach(fn, index)
+        - arr.forEach() takes a function as first argument and current index as second. It also creates a new scope whereas a for-loop doesn't.
+        - a for loop you create 2 variables that are accessible outside of the for loop.
+
+        ```
+            users.forEach(function (user, i) {
+                var fullName = user.firstName + ' ' + user.lastName;
+                console.log('Hello ' + fullName);
+            });
+        ```
+    - #2 array.map(fn)
+    
+       - It loops over the array (like forEach) but will create a new array with the items you return.
+       
+       ```
+           var usersDb = users.map(function (user, index) {
+              user.id = index + 1;
+              return user;
+          });
+          console.table(usersDb);
+       ```
+    - #3 array.filter(fn)
+      - Array.filter is like a bit like map. It also creates a new array but only containing the items where the function returns true.
+      
+        ```
+          var guys = users.filter(function (user) {
+              return user.gender === 'M';
+          });
+          console.table(guys);
+        ```
+     - #4 array.reduce(fn, startingValue)
+       - The first argument is a function that takes 4 arguments, the last two are optional.
+       - previousValue - the previous value in the next iteration, will be startingValue the first time.
+       - currentValue - the current item in the array we're iterating over.
+       - index - the index of the current item.
+       - originalArray - the array we're executing .reduce on.
+       
+       ```
+          var namesList = users.reduce(function (previous, current, index, originalArray) {
+            var end = index + 1 === originalArray.length ? '.' : ', ';
+            return previous + current.firstName + end;
+        }, '');
+          console.log(namesList); // Jilles, Justin, Miley.
+       ```
+     - #5 array.every(fn)
+       - The last one is pretty uncommon but really handy. It's like kind of filter but returns a boolean rather than an array.
+       
+        ```
+            function isMillionaire (person) {
+                  return ['Justin Bieber', 'Miley Cyrus'].indexOf(person.firstName + ' ' + person.lastName);
+              }
+
+            if (users.every(isMillionaire)) {
+                console.log('They are all rich!');
+            } else {
+                console.log('Someone in our group is not rich...');
+            }
+        ```
+        
+        ##### As a bonus there is also Array.some which is almost the same as every but returns true even if just one condition is true rather than all of them.
