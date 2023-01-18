@@ -44,7 +44,7 @@
               // SyntaxError: const declared variable 'x' must have an initializer.
           ```
           
-3. Awesome JavaScript array methods
+3. Awesome JavaScript array methods [refrence here](https://jilles.me/awesome-javascript-array-methods/)
    -  #1 array.forEach(fn, index)
         - arr.forEach() takes a function as first argument and current index as second. It also creates a new scope whereas a for-loop doesn't.
         - a for loop you create 2 variables that are accessible outside of the for loop.
